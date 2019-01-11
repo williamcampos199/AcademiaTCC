@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipos">
+        <item>Peito</item>
+        <item>Costas</item>
+        <item>Perna</item>
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Ombro</item>
+    </string-array>
+
+
+</resources>

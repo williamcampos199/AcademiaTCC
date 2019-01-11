@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.campos.william.academiatcc">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.DietaActivity"
+            android:label="@string/title_activity_dieta"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.campos.william.academiatcc.activity.MainActivity" />
+        </activity>
+        <activity android:name=".activity.AlimentoCadastroActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.DietaActivity" />
+        </activity>
+        <activity android:name=".activity.RefeicaoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.DietaActivity" />
+        </activity>
+        <activity android:name=".activity.RefeicaoEditarActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.DietaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.TreinoActivity"
+            android:label="@string/title_activity_treino"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.campos.william.academiatcc.activity.MainActivity" />
+        </activity>
+        <activity android:name=".activity.ExercicioCadastroActivity" />
+        <activity
+            android:name=".activity.PerfilActivity"
+            android:label="@string/title_activity_perfil"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.campos.william.academiatcc.activity.MainActivity" />
+        </activity>
+        <activity android:name=".activity.PerfilCadastroActivity" />
+        <activity android:name=".activity.PesoCadastroActivity" />
+        <activity android:name=".activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.CadastroLoginActivity" />
+        <activity
+            android:name=".activity.AerobicoActivity"
+            android:label="@string/title_activity_aerobico"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.campos.william.academiatcc.activity.MainActivity" />
+        </activity>
+        <activity android:name=".activity.TreinoCadastroActivity" />
+        <activity android:name=".activity.BatimentosCadastroActivity" />
+        <activity android:name=".activity.AerobicoCadastroActivity"></activity>
+    </application>
+
+</manifest>
