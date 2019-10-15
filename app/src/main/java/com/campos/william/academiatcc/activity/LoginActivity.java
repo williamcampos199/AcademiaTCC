@@ -28,10 +28,8 @@ public class LoginActivity extends AppCompatActivity {
 
         editTextUsuario = findViewById(R.id.edit_login_usuario);
         editTextSenha = findViewById(R.id.edit_login_senha);
-         textViewCadastrar = findViewById(R.id.textView_cadastrar_login);
+        textViewCadastrar = findViewById(R.id.textView_cadastrar_login);
         btnLogar = findViewById(R.id.button_logar);
-
-
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,50 +37,49 @@ public class LoginActivity extends AppCompatActivity {
                 String senha = editTextSenha.getText().toString();
                 String usuario = editTextUsuario.getText().toString();
 
-                if((!senha.isEmpty()) && (!usuario.isEmpty()) ) {
-
-                    LoginDAO dao= new LoginDAO(getBaseContext());
-                    Login login ;
-                login = dao.SelectByUsuario(usuario);
-                    if(login != null){
-                        if(senha.equals(login.getSenha())){//senha correta
-
-                            Toast.makeText(getBaseContext(),"Login com sucesso",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-
-                            intent.putExtra("login",login);
-
-                            startActivity(intent);
-
-
-                            finish();
-
-                        }else {//senha incorreta
-
-                            Toast.makeText(getApplicationContext(),"Senha incorreta",Toast.LENGTH_LONG).show();
-
-                        }
-
-
-                    }else {//usuario não existe
-
-                        Toast.makeText(getApplicationContext(),"Usuario não existe",Toast.LENGTH_LONG).show();
-                    }
-
-                }
-                else {//Preencha o login e senha
+                if((senha.isEmpty()) || (usuario.isEmpty()) ){//Preencha o login e senha
 
                     Toast.makeText(getApplicationContext(),"Preencha o login e senha",Toast.LENGTH_LONG).show();
+                    return;
                 }
 
+
+                LoginDAO dao= new LoginDAO(getBaseContext());
+                Login login ;
+                login = dao.SelectByUsuario(usuario);
+                if(login == null) {//usuario não existe
+
+                    //Toast.makeText(getApplicationContext(),"Usuario não existe",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(!senha.equals(login.getSenha())){//senha incorreta
+
+                    Toast.makeText(getApplicationContext(),"Senha incorreta",Toast.LENGTH_LONG).show();
+
+                }
+
+                Toast.makeText(getBaseContext(),"Login com sucesso",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+
+                intent.putExtra("login",login);
+
+                startActivity(intent);
+
+
+                finish();
+
             }
+
+
+
+
         });
 
 
         textViewCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(LoginActivity.this, CadastroLoginActivity.class);
                 startActivity(intent);
 

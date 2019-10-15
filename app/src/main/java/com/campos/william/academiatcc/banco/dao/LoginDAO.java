@@ -27,8 +27,6 @@ public class LoginDAO {
         cv.put("usuario",login.getUsuario());
         cv.put("senha",login.getSenha());
 
-
-
         return gw.getDatabase().insert(TABLE_LOGIN,null,cv) > 0;
     }
 
@@ -38,9 +36,6 @@ public class LoginDAO {
         cv.put("usuario",login.getUsuario());
         cv.put("senha",login.getSenha());
 
-
-
-
         return gw.getDatabase().update(TABLE_LOGIN,cv,"idlogin=?",new String[]{login.getIdLogin() + ""}) > 0;
 
     }
@@ -49,18 +44,16 @@ public class LoginDAO {
         List<Login> logins = new ArrayList<>();
         Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM Login",null);
         while (cursor.moveToNext()){
-           Login login = new Login();
-           login.setIdLogin(cursor.getInt(cursor.getColumnIndex("idlogin")));
-         login.setIdAluno(cursor.getInt(cursor.getColumnIndex("idaluno")));
-         login.setUsuario(cursor.getString(cursor.getColumnIndex("usuario")));
-         login.setSenha(cursor.getString(cursor.getColumnIndex("senha")));
-
+            Login login = new Login();
+            login.setIdLogin(cursor.getInt(cursor.getColumnIndex("idlogin")));
+            login.setIdAluno(cursor.getInt(cursor.getColumnIndex("idaluno")));
+            login.setUsuario(cursor.getString(cursor.getColumnIndex("usuario")));
+            login.setSenha(cursor.getString(cursor.getColumnIndex("senha")));
 
             logins.add(login);
         }
         cursor.close();
         return  logins;
-
     }
 
     public Login SelectUltimoRegistro(){
@@ -74,13 +67,9 @@ public class LoginDAO {
 
             cursor.close();
             return login;
-
         }
-
         return null;
-
     }
-
 
     public Login SelectByID(int id){
         Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM Login WHERE idlogin = "+ id ,null);
@@ -92,22 +81,16 @@ public class LoginDAO {
             login.setUsuario(cursor.getString(cursor.getColumnIndex("usuario")));
             login.setSenha(cursor.getString(cursor.getColumnIndex("senha")));
 
-
-
             cursor.close();
             return  login;
         }
 
-
-
         return null;
-
     }
 
 
-
     public Login SelectByUsuario(String usuario){
-        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM Login WHERE usuario = ?" ,new String[]{usuario});
+        Cursor cursor = gw.getDatabase().rawQuery("SELECT idlogin, idaluno, usuario,senha FROM Login WHERE usuario = ?" ,new String[]{usuario});
 
         if(cursor.moveToFirst()){
             Login login = new Login();
@@ -116,29 +99,16 @@ public class LoginDAO {
             login.setUsuario(cursor.getString(cursor.getColumnIndex("usuario")));
             login.setSenha(cursor.getString(cursor.getColumnIndex("senha")));
 
-
-
             cursor.close();
             return  login;
         }
 
-
-
-        cursor.close();
         return null;
 
     }
 
-
-
-
-
     public boolean Delete(int id){
         return gw.getDatabase().delete(TABLE_LOGIN,"idlogin=?",new String[]{id + ""}) > 0;
     }
-
-
-
-
 
 }

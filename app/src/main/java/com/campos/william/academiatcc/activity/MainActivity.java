@@ -31,10 +31,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private int idLogin;
-     private SlidingTabLayout slidingTabLayout;
-     private ViewPager viewPager;
-      private Toolbar toolbar;
-      private Aluno aluno;
+    private SlidingTabLayout slidingTabLayout;
+    private ViewPager viewPager;
+    private Toolbar toolbar;
+    private Aluno aluno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,38 +44,33 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         findViewById(R.id.includemain).setVisibility(View.VISIBLE);
-      slidingTabLayout =   findViewById(R.id.stl_tabs);
-      viewPager = findViewById(R.id.vp_pagina);
+        slidingTabLayout =   findViewById(R.id.stl_tabs);
+        viewPager = findViewById(R.id.vp_pagina);
 
-      Intent intent = getIntent();
-      if(intent.hasExtra("login")){
-          Login login =  (Login) intent.getSerializableExtra("login");
-          idLogin = login.getIdLogin();
-      }
+        Intent intent = getIntent();
+        if(intent.hasExtra("login")){
+            Login login =  (Login) intent.getSerializableExtra("login");
+            idLogin = login.getIdLogin();
+        }
         Aluno aluno = new Aluno();
         AlunoDAO alunoDAO = new AlunoDAO(getBaseContext());
 
         LoginDAO loginDAO = new LoginDAO(getBaseContext());
-      Login login = loginDAO.SelectByID(idLogin);
+        Login login = loginDAO.SelectByID(idLogin);
         Preferencias preferencias = new Preferencias(getBaseContext());
 
-      if(login!= null) {
-          aluno = alunoDAO.SelectByID(login.getIdAluno());
-          preferencias.salvarDados(aluno.getIdAluno()+"",aluno.getNome());
+      /*  if(login!= null) {
+            aluno = alunoDAO.SelectByID(login.getIdAluno());
+            preferencias.salvarDados(aluno.getIdAluno()+"",aluno.getNome());
 
-          if(aluno.getNome().equals("sem nome")){
-              Intent intent1 = new Intent(MainActivity.this, PerfilCadastroActivity.class);
-              intent1.putExtra("perfil",aluno);
-              startActivity(intent1);
-          }
-      }
+            if(aluno.getNome().equals("sem nome")){
+                Intent intent1 = new Intent(MainActivity.this, PerfilCadastroActivity.class);
+                intent1.putExtra("perfil",aluno);
+                startActivity(intent1);
+            }
+        }*/
 
-
-
-
-
-
-      //Configurar sliding tabs
+        //Configurar sliding tabs
 
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this,R.color.colorAccent));
@@ -83,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Configurar Adapter
 
- TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
+        TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
         viewPager.setAdapter(tabAdapter);
 
         slidingTabLayout.setViewPager(viewPager);
@@ -140,12 +135,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();*/
 
 
-               if (slidingTabLayout.getTabSelecionada() == 0 ){
-                   //Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
-                   Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
-                   startActivity(intent);
+       if (slidingTabLayout.getTabSelecionada() == 0 ){
+           //Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
+           Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
+           startActivity(intent);
 
-               }else
+       }else
          if(slidingTabLayout.getTabSelecionada() == 1){//Treino
 
              Intent intent = new Intent(MainActivity.this,TreinoActivity.class);
