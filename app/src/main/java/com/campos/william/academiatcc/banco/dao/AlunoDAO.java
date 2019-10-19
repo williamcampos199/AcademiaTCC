@@ -11,12 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlunoDAO {
-
-
-
     private final String TABLE_ALUNO = "Aluno";
     private DbGateway gw;
-
 
     public AlunoDAO(Context ctx){
         gw = DbGateway.getInstance(ctx);
@@ -32,9 +28,6 @@ public class AlunoDAO {
         cv.put("altura", aluno.getAltura());
         cv.put("sexo",aluno.getSexo());
 
-
-
-
         return gw.getDatabase().insert(TABLE_ALUNO,null,cv) > 0;
     }
 
@@ -48,18 +41,27 @@ public class AlunoDAO {
         cv.put("altura", aluno.getAltura());
         cv.put("sexo",aluno.getSexo());
 
-
         return gw.getDatabase().update(TABLE_ALUNO,cv,"idaluno=?",new String[]{aluno.getIdAluno() + ""}) > 0;
-
     }
 
     public List<Aluno> Select(){
         List<Aluno> alunos= new ArrayList<>();
-        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM Aluno",null);
+
+        String sql = "SELECT idaluno,";
+        sql += " idtreino,";
+        sql += " nome,";
+        sql += " datanascimento,";
+        sql += " objetivo,";
+        sql += " datainicio,";
+        sql += " altura,";
+        sql += " sexo";
+        sql += " FROM Aluno";
+        Cursor cursor = gw.getDatabase().rawQuery(sql,null);
+
         while (cursor.moveToNext()){
-           Aluno aluno= new Aluno();
-           aluno.setIdAluno(cursor.getInt(cursor.getColumnIndex("idaluno")));
-           aluno.setIdTreino(cursor.getInt(cursor.getColumnIndex("idtreino")));
+            Aluno aluno= new Aluno();
+            aluno.setIdAluno(cursor.getInt(cursor.getColumnIndex("idaluno")));
+            aluno.setIdTreino(cursor.getInt(cursor.getColumnIndex("idtreino")));
             aluno.setNome(cursor.getString(cursor.getColumnIndex("nome")));
             aluno.setDataNascimento(cursor.getString(cursor.getColumnIndex("datanascimento")));
             aluno.setObjetivo(cursor.getString(cursor.getColumnIndex("objetivo")));
@@ -71,11 +73,21 @@ public class AlunoDAO {
         }
         cursor.close();
         return  alunos;
-
     }
 
     public Aluno SelectUltimoRegistro(){
-        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM Aluno ORDER BY idaluno DESC",null);
+        String sql = "SELECT idaluno,";
+        sql += " idtreino,";
+        sql += " nome,";
+        sql += " datanascimento,";
+        sql += " objetivo,";
+        sql += " datainicio,";
+        sql += " altura,";
+        sql += " sexo";
+        sql += " FROM Aluno";
+        sql += " ORDER BY idaluno DESC";
+
+        Cursor cursor = gw.getDatabase().rawQuery(sql,null);
         while (cursor.moveToNext()){
             Aluno aluno= new Aluno();
             aluno.setIdAluno(cursor.getInt(cursor.getColumnIndex("idaluno")));
@@ -89,16 +101,23 @@ public class AlunoDAO {
 
             cursor.close();
             return aluno;
-
         }
-
         return null;
-
     }
 
-
     public Aluno SelectByID(int id){
-        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM Aluno WHERE idaluno = "+ id ,null);
+        String sql = "SELECT idaluno,";
+        sql += " idtreino,";
+        sql += " nome,";
+        sql += " datanascimento,";
+        sql += " objetivo,";
+        sql += " datainicio,";
+        sql += " altura,";
+        sql += " sexo";
+        sql += " FROM Aluno";
+        sql += " WHERE idaluno = ";
+
+        Cursor cursor = gw.getDatabase().rawQuery(sql+ id ,null);
 
         if(cursor.moveToFirst()){
             Aluno aluno= new Aluno();
@@ -115,21 +134,10 @@ public class AlunoDAO {
             return  aluno;
         }
 
-
-
         return null;
-
     }
-
 
     public boolean Delete(int id){
         return gw.getDatabase().delete(TABLE_ALUNO,"idaluno=?",new String[]{id + ""}) > 0;
     }
-
-
-
-
-
-
-
 }

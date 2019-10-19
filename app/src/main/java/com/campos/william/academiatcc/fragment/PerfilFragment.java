@@ -18,7 +18,6 @@ import com.campos.william.academiatcc.banco.model.Aluno;
 import com.campos.william.academiatcc.banco.model.Peso;
 import com.campos.william.academiatcc.helper.Preferencias;
 
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,11 +26,9 @@ public class PerfilFragment extends Fragment {
     private RecyclerView recyclerView;
     private PerfilAdapter adapter;
 
-
     public PerfilFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,43 +40,32 @@ public class PerfilFragment extends Fragment {
         return view;
     }
 
-
     private void configuraRecycler( View view){
-
-
         //Configurando o gerenciador de layout para ser uma lista.
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_perfil);
+        recyclerView =  view.findViewById(R.id.recyclerView_perfil);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
+        configuraAdapters();
+    }
+
+    public void configuraAdapters(){
 
         //adiciona o adapter que irá anexar a lista de objetos á lista
-
-        AlunoDAO alunoDAO = new AlunoDAO(getActivity());
-
         Preferencias preferencias = new Preferencias(getActivity());
         int idaluno = Integer.parseInt(preferencias.getIdentificador());
 
-
+        AlunoDAO alunoDAO = new AlunoDAO(getActivity());
         PesoDAO pesoDAO = new PesoDAO(getActivity());
         Peso peso = pesoDAO.SelectUltimoRegistro();
         Aluno aluno = alunoDAO.SelectByID(idaluno);
-        if(aluno != null ) {
-            adapter = new PerfilAdapter(aluno,peso);
 
-            recyclerView.setAdapter(adapter);
-            recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        if(aluno == null ) return;
 
-        }
-
-
-
-
+        adapter = new PerfilAdapter(aluno,peso);
+        recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
     }
-
-
-
-
 
 }
