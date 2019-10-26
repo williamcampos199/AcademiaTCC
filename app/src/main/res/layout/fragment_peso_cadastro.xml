@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,9 +30,29 @@
         android:layout_gravity="right"
         android:text="@string/data_maior" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView_peso_cadastro"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp" />
+    <TextView
+        android:id="@+id/textView_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="73dp"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/button_excluir_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="70dp"
+        android:src="@android:drawable/ic_delete" />
+
+    <ImageButton
+        android:id="@+id/button_editar_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="70dp"
+        android:src="@android:drawable/ic_menu_edit" />
+
+
 </FrameLayout>

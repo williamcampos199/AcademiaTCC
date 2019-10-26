@@ -17,6 +17,8 @@ import com.campos.william.academiatcc.adapter.PerfilCadastroTabAdapter;
 import com.campos.william.academiatcc.banco.dao.AlunoDAO;
 import com.campos.william.academiatcc.banco.model.Aluno;
 import com.campos.william.academiatcc.banco.model.Peso;
+import com.campos.william.academiatcc.fragment.PerfilFragment;
+import com.campos.william.academiatcc.fragment.PesoCadastroFragment;
 import com.campos.william.academiatcc.helper.Preferencias;
 import com.campos.william.academiatcc.helper.SlidingTabLayout;
 
@@ -24,28 +26,27 @@ public class PerfilActivity extends AppCompatActivity {
     private SlidingTabLayout slidingTabLayout;
     private ViewPager viewPager;
     private PerfilCadastroTabAdapter tabAdapter;
-    private boolean perfilCadastrado;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
         Toolbar toolbar =  findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         findViewById(R.id.includeperfil).setVisibility(View.VISIBLE);
         slidingTabLayout =   findViewById(R.id.stl_tabs_perfil_cadastro);
         viewPager = findViewById(R.id.vp_pagina_perfil_cadastro);
 
+        setSupportActionBar(toolbar);
+        configurarTabs();
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void configurarTabs(){
         //Configurar sliding tabs
 
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this,R.color.colorAccent));
-
-
 
         //Configurar Adapter
 
@@ -53,63 +54,40 @@ public class PerfilActivity extends AppCompatActivity {
         viewPager.setAdapter(tabAdapter);
 
         slidingTabLayout.setViewPager(viewPager);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
-
-
-
-
-
-
-         FloatingActionButton fab = findViewById(R.id.fab);
-
-
-
-
-       fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int tabSelecionada = slidingTabLayout.getTabSelecionada();
+                Intent intent;
 
-            if(slidingTabLayout.getTabSelecionada() == 1){
-                    Intent intent = new Intent(PerfilActivity.this, PesoCadastroActivity.class);
-                    startActivity(intent);
-                }
-                if(slidingTabLayout.getTabSelecionada() == 0){
-                    Intent intent = new Intent(PerfilActivity.this, PerfilCadastroActivity.class);
+                switch (tabSelecionada){
+                    case 0:
+                        intent = new Intent(PerfilActivity.this, PerfilCadastroActivity.class);
 
-                    AlunoDAO dao = new AlunoDAO(getBaseContext());
-                    Preferencias preferencias = new Preferencias(getBaseContext());
-                    int idAluno = Integer.parseInt(preferencias.getIdentificador() );
+                        intent.putExtra("perfil", retornarAluno());
+                        startActivity(intent);
+                    break;
+                    case 1:
+                        intent = new Intent(PerfilActivity.this, PesoCadastroActivity.class);
 
-                    Aluno aluno = dao.SelectByID(idAluno);
-
-
-                    if(aluno!= null)
-                    intent.putExtra("perfil",aluno);
-                    startActivity(intent);
+                        startActivity(intent);
+                        break;
                 }
 
-
-
-
-
-               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
+
+    public Aluno retornarAluno(){
+        AlunoDAO dao = new AlunoDAO(getBaseContext());
+        Preferencias preferencias = new Preferencias(getBaseContext());
+        int idAluno = Integer.parseInt(preferencias.getIdentificador());
+
+        return dao.SelectByID(idAluno);
+    }
+
 
 }

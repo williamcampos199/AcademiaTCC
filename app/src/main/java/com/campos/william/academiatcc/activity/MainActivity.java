@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         }
         configurarTabs();
 
-        configurarAdapters();
     }
 
     @Override
@@ -73,13 +72,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void configurarTabs(){
+
         //Configurar sliding tabs
 
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this,R.color.colorAccent));
-    }
-
-    public void configurarAdapters(){
 
         //Configurar Adapter
 

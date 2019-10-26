@@ -58,9 +58,9 @@ private PerfilCadastroAdapter adapter;
 
         Aluno aluno = alunoDAO.SelectUltimoRegistro();
         if(aluno != null) {
-           adapter = new PerfilCadastroAdapter(aluno);
+            adapter = new PerfilCadastroAdapter(aluno);
 
-          recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapter);
             recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         }
