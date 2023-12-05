@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(!senha.equals(login.getSenha())){//senha incorreta
 
                     Toast.makeText(getApplicationContext(),"Senha incorreta",Toast.LENGTH_LONG).show();
-
+                    return;
                 }
 
                 Toast.makeText(getBaseContext(),"Login com sucesso",Toast.LENGTH_LONG).show();

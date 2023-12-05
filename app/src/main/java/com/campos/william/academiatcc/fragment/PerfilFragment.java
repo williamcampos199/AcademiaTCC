@@ -45,7 +45,7 @@ public class PerfilFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        configuraAdapters();
+        //configuraAdapters();
     }
 
     public void configuraAdapters(){

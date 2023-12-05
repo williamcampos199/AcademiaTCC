@@ -4,13 +4,15 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
-
 import com.campos.william.academiatcc.R;
 import com.campos.william.academiatcc.adapter.AerobicoCadastroTabAdapter;
 import com.campos.william.academiatcc.adapter.DietaCadastroTabAdapter;
 import com.campos.william.academiatcc.helper.SlidingTabLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class AerobicoActivity extends AppCompatActivity {
 
@@ -23,7 +25,7 @@ public class AerobicoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aerobico);
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -39,7 +41,7 @@ public class AerobicoActivity extends AppCompatActivity {
 
         slidingTabLayout =   findViewById(R.id.stl_tabs_aerobico_cadastro);
         viewPager = findViewById(R.id.vp_pagina_aerobico_cadastro);
-        */
+
         //Configurar sliding tabs
 
         slidingTabLayout.setDistributeEvenly(true);
