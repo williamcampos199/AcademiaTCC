@@ -5,22 +5,20 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import com.campos.william.academiatcc.R;
 import com.campos.william.academiatcc.activity.AlimentoCadastroActivity;
 import com.campos.william.academiatcc.banco.dao.AlimentoDAO;
 import com.campos.william.academiatcc.banco.model.Alimento;
 import com.campos.william.academiatcc.holder.GenericoHolder;
-
+import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 public class AlimentoAdapter extends RecyclerView.Adapter<GenericoHolder> {
@@ -49,7 +47,7 @@ public class AlimentoAdapter extends RecyclerView.Adapter<GenericoHolder> {
             @Override
             public void onClick(View v) {
                  Alimento alimento =  alimentos.get(position);
-                Activity activity = getActivity(v);
+                Activity activity = (Activity) getActivity(v);
                 Intent intent = new Intent (  getActivity(v) , AlimentoCadastroActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 intent.putExtra("alimento",alimento);

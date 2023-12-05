@@ -2,13 +2,12 @@ package com.campos.william.academiatcc.adapter;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import com.campos.william.academiatcc.R;
 import com.campos.william.academiatcc.banco.dao.DietaDAO;
 import com.campos.william.academiatcc.banco.dao.ItemExercicioDAO;

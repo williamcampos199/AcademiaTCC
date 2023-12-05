@@ -1,10 +1,9 @@
 package com.campos.william.academiatcc.adapter;
 
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import com.campos.william.academiatcc.fragment.AlimentosFragment;
 import com.campos.william.academiatcc.fragment.DietaCadastroFragment;
 import com.campos.william.academiatcc.fragment.ExerciciosFragment;
@@ -13,7 +12,7 @@ import com.campos.william.academiatcc.fragment.TreinoFragment;
 
 import java.util.HashMap;
 
-public class TreinoCadastroTabAdapter extends FragmentPagerAdapter{
+public class TreinoCadastroTabAdapter extends FragmentPagerAdapter {
 
 
     private String [] tituloAbas = {"TREINO","EXERCICIOS"};

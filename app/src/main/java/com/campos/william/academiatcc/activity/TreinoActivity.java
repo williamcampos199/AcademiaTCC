@@ -2,18 +2,17 @@ package com.campos.william.academiatcc.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.campos.william.academiatcc.R;
 import com.campos.william.academiatcc.adapter.TabAdapter;
 import com.campos.william.academiatcc.adapter.TreinoCadastroTabAdapter;
 import com.campos.william.academiatcc.helper.SlidingTabLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TreinoActivity extends AppCompatActivity {
 

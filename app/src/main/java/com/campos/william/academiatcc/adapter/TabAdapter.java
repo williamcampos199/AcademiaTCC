@@ -1,17 +1,15 @@
 package com.campos.william.academiatcc.adapter;
 
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import com.campos.william.academiatcc.fragment.DietaFragment;
 import com.campos.william.academiatcc.fragment.PerfilFragment;
 import com.campos.william.academiatcc.fragment.TreinoFragment;
-
 import java.util.HashMap;
 
-public class TabAdapter  extends FragmentPagerAdapter{
+public class TabAdapter  extends FragmentPagerAdapter {
 
     private String [] tituloAbas = {"PERFIL","TREINO" , "DIETA"};
     private HashMap<Integer, Fragment> fragmentosUtilizados = new HashMap<>();

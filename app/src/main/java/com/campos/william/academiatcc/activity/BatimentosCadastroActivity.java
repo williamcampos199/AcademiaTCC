@@ -1,11 +1,12 @@
 package com.campos.william.academiatcc.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.campos.william.academiatcc.R;
 
-public class BatimentosCadastroActivity extends AppCompatActivity {
+public class BatimentosCadastroActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
